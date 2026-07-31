@@ -110,6 +110,12 @@
   }
   .nav-links a:hover{ color:var(--cyan); }
   
+  .nav-right-controls{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+
   .nav-lang-pill{
     display:flex;
     align-items:center;
@@ -137,7 +143,84 @@
     font-weight:700;
   }
   .nav-lang-pill .sep{ color:var(--line); }
-  @media(max-width:720px){ .nav-links{ display:none; } }
+
+  /* Mobile Hamburger & Drawer Navigation */
+  .mobile-menu-btn{
+    display:none;
+    background:var(--bg-panel);
+    border:1px solid var(--line);
+    color:var(--ink);
+    width:36px;
+    height:36px;
+    border-radius:4px;
+    cursor:pointer;
+    align-items:center;
+    justify-content:center;
+    transition:border-color .15s, color .15s;
+  }
+  .mobile-menu-btn svg{ width:18px; height:18px; }
+  .mobile-menu-btn:hover{ color:var(--cyan); border-color:var(--cyan-dim); }
+
+  @media(max-width:768px){
+    .nav-links{ display:none; }
+    .mobile-menu-btn{ display:flex; }
+  }
+
+  .mobile-drawer{
+    position:fixed;
+    inset:0;
+    background:rgba(7, 10, 13, 0.96);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    z-index:9980;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .25s ease;
+    display:flex;
+    flex-direction:column;
+    padding:80px 32px 40px;
+  }
+  .mobile-drawer.show{
+    opacity:1;
+    pointer-events:auto;
+  }
+  .mobile-drawer-close{
+    position:absolute;
+    top:20px;
+    right:24px;
+    background:var(--bg-row);
+    border:1px solid var(--line);
+    color:var(--ink);
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    font-size:20px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .mobile-drawer-links{
+    list-style:none;
+    display:flex;
+    flex-direction:column;
+    gap:28px;
+    margin-top:20px;
+  }
+  .mobile-drawer-links a{
+    font-family:var(--mono);
+    font-size:18px;
+    font-weight:700;
+    letter-spacing:.12em;
+    color:var(--ink);
+    text-decoration:none;
+    text-transform:uppercase;
+    transition:color .15s;
+    display:inline-block;
+  }
+  .mobile-drawer-links a:hover{
+    color:var(--cyan);
+  }
 
   /* ---------------- hero ---------------- */
   .hero{
@@ -150,7 +233,10 @@
     gap:48px;
     align-items:center;
   }
-  @media(max-width:820px){ .hero-grid{ grid-template-columns:1fr; } }
+  @media(max-width:820px){
+    .hero{ padding:40px 20px 36px; }
+    .hero-grid{ grid-template-columns:1fr; gap:36px; }
+  }
 
   .eyebrow{
     display:flex; align-items:center; gap:10px;
@@ -161,16 +247,17 @@
 
   .hero h1{
     font-family:var(--sans); font-weight:800;
-    font-size:clamp(40px,6vw,64px);
-    line-height:1.02; letter-spacing:-0.02em;
+    font-size:clamp(36px,7.5vw,64px);
+    line-height:1.05; letter-spacing:-0.02em;
   }
 
   .hero-tagline{
     margin-top:16px;
     font-family:var(--mono);
-    font-size:14px;
+    font-size:13.5px;
     color:var(--ink-muted);
     letter-spacing:.02em;
+    line-height:1.6;
   }
 
   .hero-action-row{
@@ -198,6 +285,7 @@
     display:inline-flex;
     align-items:center;
     gap:8px;
+    min-height:44px;
   }
   .pill-contact-btn:hover{
     background:var(--cyan);
@@ -226,6 +314,13 @@
     box-shadow:0 12px 32px rgba(0,0,0,.5);
     margin:0 auto;
   }
+  @media(max-width:768px){
+    .hero-image-card{
+      height:360px;
+      max-width:100%;
+    }
+  }
+
   .hero-cover-img{
     width:100%;
     height:100%;
@@ -282,10 +377,10 @@
     gap:16px;
   }
   @media(max-width:850px){
-    .hero-social-grid{ grid-template-columns:repeat(2, 1fr); }
+    .hero-social-grid{ grid-template-columns:repeat(2, 1fr); gap:12px; }
   }
   @media(max-width:480px){
-    .hero-social-grid{ grid-template-columns:1fr; }
+    .hero-social-grid{ grid-template-columns:repeat(2, 1fr); }
   }
 
   .social-card{
@@ -368,6 +463,9 @@
     overflow-y:auto;
     padding:40px 24px;
   }
+  @media(max-width:600px){
+    .album-modal{ padding:24px 16px; }
+  }
   .album-modal.show{
     opacity:1;
     pointer-events:auto;
@@ -388,7 +486,7 @@
   }
   .album-modal-title{
     font-family:var(--sans);
-    font-size:28px;
+    font-size:clamp(20px, 5vw, 28px);
     font-weight:800;
     color:var(--ink);
     letter-spacing:-0.01em;
@@ -454,8 +552,9 @@
   }
   @media(max-width:550px){
     .album-grid-editorial{
-      grid-template-columns:1fr;
-      grid-auto-rows:320px;
+      grid-template-columns:repeat(2, 1fr);
+      grid-auto-rows:220px;
+      gap:10px;
     }
   }
 
@@ -544,7 +643,7 @@
     pointer-events:auto;
   }
   .single-lb-img-wrap{
-    max-width:90vw;
+    max-width:92vw;
     max-height:88vh;
     display:flex;
     flex-direction:column;
@@ -552,7 +651,7 @@
   }
   .single-lb-img-wrap img{
     max-width:100%;
-    max-height:82vh;
+    max-height:80vh;
     object-fit:contain;
     border-radius:4px;
     box-shadow:0 12px 40px rgba(0,0,0,0.8);
@@ -566,14 +665,19 @@
   }
   .single-lb-close{
     position:absolute;
-    top:24px;
-    right:24px;
-    background:transparent;
-    border:none;
+    top:20px;
+    right:20px;
+    background:rgba(15,23,32,0.6);
+    border:1px solid var(--line);
     color:var(--ink);
-    font-size:28px;
+    font-size:24px;
+    width:42px;
+    height:42px;
+    border-radius:50%;
     cursor:pointer;
-    padding:8px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     transition:color .15s;
   }
   .single-lb-close:hover{ color:var(--cyan); }
@@ -585,9 +689,9 @@
     background:rgba(15, 23, 32, 0.7);
     border:1px solid var(--line);
     color:var(--ink);
-    font-size:36px;
-    width:54px;
-    height:54px;
+    font-size:32px;
+    width:48px;
+    height:48px;
     border-radius:50%;
     cursor:pointer;
     display:flex;
@@ -595,8 +699,8 @@
     justify-content:center;
     transition:background .15s, color .15s, border-color .15s;
   }
-  .single-lb-nav.prev{ left:24px; }
-  .single-lb-nav.next{ right:24px; }
+  .single-lb-nav.prev{ left:16px; }
+  .single-lb-nav.next{ right:16px; }
   .single-lb-nav:hover{
     color:var(--cyan);
     border-color:var(--cyan);
@@ -609,6 +713,7 @@
 
   /* ---------------- section shell ---------------- */
   section.block{ padding:70px 24px; border-bottom:1px solid var(--line); position:relative; z-index:2; }
+  @media(max-width:768px){ section.block{ padding:48px 20px; } }
   .block-head{ margin-bottom:34px; }
   .section-label{
     display:flex; align-items:center; gap:10px; font-family:var(--mono); font-size:10.5px;
@@ -674,6 +779,8 @@
     background:var(--bg);
     position:relative; z-index:2;
   }
+  @media(max-width:768px){ .contact-section{ padding:56px 20px; } }
+
   .contact-wrap{
     display:grid;
     grid-template-columns:1fr 1.2fr;
@@ -724,7 +831,7 @@
     gap:28px;
   }
   @media(max-width:550px){
-    .form-row-2{ grid-template-columns:1fr; }
+    .form-row-2{ grid-template-columns:1fr; gap:20px; }
   }
 
   .minimal-field{
@@ -750,6 +857,11 @@
     font-size:14.5px;
     border-radius:0;
     transition:border-color .2s;
+  }
+  @media(max-width:768px){
+    .minimal-field input, .minimal-field textarea{
+      font-size:16px; /* Prevents iOS auto-zoom on input focus */
+    }
   }
   .minimal-field input::placeholder, .minimal-field textarea::placeholder{
     color:var(--ink-dim);
@@ -780,6 +892,7 @@
     cursor:pointer;
     text-transform:uppercase;
     transition:transform .15s, background-color .15s, box-shadow .15s;
+    min-height:44px;
   }
   .pill-btn:hover{
     background:var(--cyan);
@@ -837,6 +950,16 @@
   <!-- Toast Notification -->
   <div id="toast" class="toast">✓ Đã sao chép drphuchung@proton.me</div>
 
+  <!-- Mobile Drawer Menu Overlay -->
+  <div id="mobileDrawer" class="mobile-drawer">
+    <button id="closeMobileDrawerBtn" class="mobile-drawer-close" aria-label="Close menu">✕</button>
+    <ul class="mobile-drawer-links">
+      <li><a href="#gioithieu" class="js-close-drawer" data-i18n="navLinks.0">LIÊN KẾT</a></li>
+      <li><a href="#duan" class="js-close-drawer" data-i18n="navLinks.1">SẢN PHẨM</a></li>
+      <li><a href="#lienhe" class="js-close-drawer" data-i18n="navLinks.2">LIÊN HỆ</a></li>
+    </ul>
+  </div>
+
   <!-- Topbar Header (Contained in .wrap max-width container) -->
   <header class="nav-header">
     <nav class="wrap nav">
@@ -846,10 +969,15 @@
         <li><a href="#duan" data-i18n="navLinks.1">SẢN PHẨM</a></li>
         <li><a href="#lienhe" data-i18n="navLinks.2">LIÊN HỆ</a></li>
       </ul>
-      <div class="nav-lang-pill" id="langSwitchBtn">
-        <span class="lang-option active" data-lang="vi">VI</span>
-        <span class="sep">|</span>
-        <span class="lang-option" data-lang="en">EN</span>
+      <div class="nav-right-controls">
+        <div class="nav-lang-pill" id="langSwitchBtn">
+          <span class="lang-option active" data-lang="vi">VI</span>
+          <span class="sep">|</span>
+          <span class="lang-option" data-lang="en">EN</span>
+        </div>
+        <button class="mobile-menu-btn" id="openMobileDrawerBtn" aria-label="Open mobile menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
     </nav>
   </header>
@@ -1091,6 +1219,33 @@
   </div>
 
 <script>
+  // --- Mobile Navigation Drawer Control ---
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const openMobileDrawerBtn = document.getElementById('openMobileDrawerBtn');
+  const closeMobileDrawerBtn = document.getElementById('closeMobileDrawerBtn');
+
+  if (openMobileDrawerBtn && mobileDrawer) {
+    openMobileDrawerBtn.addEventListener('click', () => {
+      mobileDrawer.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+
+  function closeDrawer() {
+    if (mobileDrawer) {
+      mobileDrawer.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (closeMobileDrawerBtn) {
+    closeMobileDrawerBtn.addEventListener('click', closeDrawer);
+  }
+
+  document.querySelectorAll('.js-close-drawer').forEach(el => {
+    el.addEventListener('click', closeDrawer);
+  });
+
   // --- i18n Translation Dictionary ---
   const i18n = {
     vi: {
