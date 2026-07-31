@@ -870,7 +870,7 @@
 
       <!-- Hero Right Photo Card with Floating Handle Pill -->
       <div class="hero-image-card">
-        <img class="hero-cover-img" src="banner.jpg" alt="ArkParado Banner Photo">
+        <img class="hero-cover-img" src="banner.webp" alt="ArkParado Banner Photo" loading="eager" decoding="async">
         <div class="hero-handle-pill">
           <div class="pill-avatar">
             <img src="https://ugc.production.linktr.ee/a27c92de-91ed-4b11-b834-23898e34b03c_Khng-C-Tiu-85-20250318214938.png" alt="ArkParado avatar">
@@ -1248,23 +1248,23 @@
   // Apply saved language on load
   applyLanguage(currentLang);
 
-  // --- 15 Curated Best Photos with Custom Object-Position Framing ---
+  // --- 15 Curated Best Photos pointing to Optimized WebP Format ---
   const photoGallery = [
-    { src: "Photography/IMG_6541.jpg", title: "Cosplay Portrait I", span: "tall", pos: "center center" },
-    { src: "Photography/IMG_6723.jpg", title: "Cosplay Showcase II", span: "wide", pos: "center 28%" },
-    { src: "Photography/1782722251063.jpg", title: "Cosplay Frame III", span: "normal", pos: "center 30%" },
-    { src: "Photography/1782722251072.jpg", title: "Cinematic Lighting IV", span: "normal", pos: "center center" },
-    { src: "Photography/IMG_6825.jpg", title: "Atmospheric Shot V", span: "tall", pos: "center center" },
-    { src: "Photography/1782722251090.jpg", title: "Character Concept VI", span: "normal", pos: "center 28%" },
-    { src: "Photography/IMG_6939.jpg", title: "Cosplay Portrait VII", span: "wide", pos: "center 26%" },
-    { src: "Photography/1782722251119.jpg", title: "Studio Light VIII", span: "normal", pos: "center 22%" },
-    { src: "Photography/1782722251126.jpg", title: "Cosplay Highlight IX", span: "normal", pos: "center 26%" },
-    { src: "Photography/1782722251138.jpg", title: "Cosplay Portrait X", span: "tall", pos: "center center" },
-    { src: "Photography/IMG_6567.jpg", title: "Natural Light XI", span: "normal", pos: "center 26%" },
-    { src: "Photography/IMG_6656.jpg", title: "Visual Arts XII", span: "normal", pos: "center 26%" },
-    { src: "Photography/IMG_6872.jpg", title: "Cosplay Frame XIII", span: "wide", pos: "center 25%" },
-    { src: "Photography/IMG_6971.jpg", title: "Cosplay Portrait XIV", span: "normal", pos: "center 26%" },
-    { src: "Photography/1782722251050.jpg", title: "Featured Selection XV", span: "normal", pos: "center center" }
+    { src: "Photography/optimized/IMG_6541.webp", title: "Cosplay Portrait I", span: "tall", pos: "center center" },
+    { src: "Photography/optimized/IMG_6723.webp", title: "Cosplay Showcase II", span: "wide", pos: "center 28%" },
+    { src: "Photography/optimized/1782722251063.webp", title: "Cosplay Frame III", span: "normal", pos: "center 30%" },
+    { src: "Photography/optimized/1782722251072.webp", title: "Cinematic Lighting IV", span: "normal", pos: "center center" },
+    { src: "Photography/optimized/IMG_6825.webp", title: "Atmospheric Shot V", span: "tall", pos: "center center" },
+    { src: "Photography/optimized/1782722251090.webp", title: "Character Concept VI", span: "normal", pos: "center 28%" },
+    { src: "Photography/optimized/IMG_6939.webp", title: "Cosplay Portrait VII", span: "wide", pos: "center 26%" },
+    { src: "Photography/optimized/1782722251119.webp", title: "Studio Light VIII", span: "normal", pos: "center 22%" },
+    { src: "Photography/optimized/1782722251126.webp", title: "Cosplay Highlight IX", span: "normal", pos: "center 26%" },
+    { src: "Photography/optimized/1782722251138.webp", title: "Cosplay Portrait X", span: "tall", pos: "center center" },
+    { src: "Photography/optimized/IMG_6567.webp", title: "Natural Light XI", span: "normal", pos: "center 26%" },
+    { src: "Photography/optimized/IMG_6656.webp", title: "Visual Arts XII", span: "normal", pos: "center 26%" },
+    { src: "Photography/optimized/IMG_6872.webp", title: "Cosplay Frame XIII", span: "wide", pos: "center 25%" },
+    { src: "Photography/optimized/IMG_6971.webp", title: "Cosplay Portrait XIV", span: "normal", pos: "center 26%" },
+    { src: "Photography/optimized/1782722251050.webp", title: "Featured Selection XV", span: "normal", pos: "center center" }
   ];
 
   // --- Editorial Album Grid Rendering ---
@@ -1272,7 +1272,7 @@
   if (albumGrid) {
     albumGrid.innerHTML = photoGallery.map((item, index) => `
       <div class="album-item ${item.span || 'normal'}" onclick="openSingleLightbox(${index})">
-        <img src="${item.src}" alt="${item.title}" loading="lazy" style="object-position: ${item.pos || 'center center'};">
+        <img src="${item.src}" alt="${item.title}" loading="lazy" decoding="async" style="object-position: ${item.pos || 'center center'};">
         <div class="album-item-overlay">
           <div class="album-overlay-num">#${String(index + 1).padStart(2, '0')}</div>
           <div class="album-overlay-title">${item.title}</div>
